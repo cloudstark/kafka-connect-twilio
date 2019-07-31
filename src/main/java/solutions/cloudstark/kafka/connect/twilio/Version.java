@@ -23,24 +23,24 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Version {
 
-  private static final String VERSION_FILE = "/kafka-connect-twilio-version.properties";
+    private static final String VERSION_FILE = "/kafka-connect-twilio-version.properties";
 
-  private static String version = "unknown";
+    private static String version = "unknown";
 
-  static {
-    try {
-      Properties props = new Properties();
-      try (InputStream versionFileStream = Version.class.getResourceAsStream(VERSION_FILE)) {
-        props.load(versionFileStream);
-        version = props.getProperty("version", version).trim();
-      }
-    } catch (Exception e) {
-      log.warn("Error while loading version:", e);
+    static {
+        try {
+            Properties props = new Properties();
+            try (InputStream versionFileStream = Version.class.getResourceAsStream(VERSION_FILE)) {
+                props.load(versionFileStream);
+                version = props.getProperty("version", version).trim();
+            }
+        } catch (Exception e) {
+            log.warn("Error while loading version:", e);
+        }
     }
-  }
 
-  public static String getVersion() {
-    return version;
-  }
+    public static String getVersion() {
+        return version;
+    }
 
 }
